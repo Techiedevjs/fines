@@ -1,0 +1,327 @@
+@font-face {
+    font-family: 'Jaapokki';
+    src: url(./Jaapokki-Regular.otf);
+}
+:root{
+    --fontxsmall: 0.73vw;
+    --fontsmall: 0.83vw;
+    --fontmedium: 1vw;
+    --fontlarge: 1.2vw;
+    --fontxl: 1.4vw;
+    --padlittle: clamp(5px, 0.5vw, 25px);
+    --padmedium: clamp(10px, 0.7vw, 30px);
+    --padlarge: clamp(15px, 1vw, 100px);
+    --padlarger: clamp(20px, 1.2vw, 150px);
+    --gap: clamp(0.7rem, 0.8vw, 2rem);
+    --gaplarge: clamp(1rem, 1vw, 4rem);
+    --radius: clamp(12px, 0.8vw, 30px);
+}
+button{
+    border: none;
+    color: inherit;
+}
+input{
+    outline: none;
+}
+.fxs{
+    font-size: var(--fontxsmall);
+}
+.fxxs{
+    font-size: calc(0.9 * var(--fontsmall));
+}
+.fs{
+    font-size: var(--fontsmall);
+}
+.fm{
+    font-size: var(--fontmedium);
+}
+.fl{
+    font-size: var(--fontlarge);
+}
+.pointer{
+    cursor: pointer;
+}
+.cap{
+    text-transform: capitalize;
+}
+.upper{
+    text-transform: uppercase;
+}
+.flexsmall{
+    display: flex;
+    gap: var(--gap);
+    align-items: center;
+}
+.flexlittle{
+    display: flex;
+    gap: calc(0.5 * var(--gap));
+    align-items: center;
+}
+.bold{
+    font-weight: 700;
+}
+.semibold{
+    font-weight: 600;
+}
+.mediumbold{
+    font-weight: 500;
+}
+.center{
+    text-align: center;
+}
+.hidetask{
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+}
+.hidden{
+    display: none;
+}
+.hide-element{
+    opacity: 0;
+    position: absolute !important;
+    z-index: -10;
+    pointer-events: none;
+    transform: translateY(30vw);
+}
+.hide-display{
+    opacity: 0;
+    position: absolute;
+    pointer-events: none;
+    transform: translateY(20vh);
+}
+.hide{
+    opacity: 0;
+    display: none;
+    pointer-events: none;
+    transform: translateX(-10px) !important;
+}
+.hidefilter{
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    z-index: -10;
+    transform: translateY(-10vh);
+}
+.hideprofile{
+    opacity: 0;
+    position: absolute;
+    pointer-events: none;
+    transform: translateX(10vw) !important;
+}
+*{
+    padding: 0;
+    margin: 0;
+    line-height: normal;
+    -webkit-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none; 
+    font-family: 'Outfit', sans-serif;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    font-style: normal;
+}
+body{
+    background: url(images/background.png);
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+.display{
+    width: 100vw;
+    height: 100vh;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+/* HOME PAGE */
+.container{
+    width: 64.5vw;
+    aspect-ratio: 1239/767;
+    color: #4A4A4A;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4.6vw;
+    padding-top: 1.86vw;
+    padding-left: 2.1vw;
+    padding-right: 3.125vw;
+    padding-bottom: 2.4vw;
+    position: relative;
+    background-image: url(images/book.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.container .left-page{
+    background: url(images/doublepageleft.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+.container .right-page{
+    background: url(images/doublepageright.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+.left-page-content, .right-page-content{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url(images/paper.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding:1.77vw 1.5625vw;
+}
+.left-page-content{
+    bottom: 0.78vw;
+    left: 0px;
+}
+.right-page-content{
+    bottom: 0.8vw;
+    left: 0.8vw;
+}
+.dashed-cont{
+    position: relative;
+    /* height: 100%; */
+    width: 23.958vw;
+    aspect-ratio: 460/610;
+    background: url(images/dashedborder.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 1.25vw;
+}
+.left-edge{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+.right-edge{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+.top-left-edge{
+    position: absolute;
+    top: -0.5vw;
+    left: -0.5vw;
+    width: 1.2vw;
+    aspect-ratio: 1/1;
+}
+.top-right-edge{
+    position: absolute;
+    top: -0.5vw;
+    right: -0.5vw;
+    width: 1.2vw;
+    aspect-ratio: 1/1;
+}
+.pin-top{
+    position: absolute;
+    top: -1.8vw;
+    left: -2vw;
+    width: 3.75vw;
+    aspect-ratio: 72/55;
+}
+.tape-bottom{
+    position: absolute;
+    bottom: -3vw;
+    right: -2.2vw;
+    width: 5vw;
+    aspect-ratio: 90/98;
+}
+header img{
+    width: 1.66vw;
+    aspect-ratio: 1/1;
+}
+header div p{
+    font-size: 0.9375vw;
+}
+header{
+    padding-bottom: 1.3vw;
+    border-bottom: 1px solid rgba(60, 60, 0, 0.15);
+}
+.text-dark{
+    color: #3C3C00;
+}
+.text-blue{
+    color: #2270F9;
+}
+.billing-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+form{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-top: 1vw;
+}
+form label{
+    color: #2270F9;
+    font-size: 0.9375vw;
+    font-weight: 500;
+    margin-bottom: 0.5vw;
+    display: block;
+}
+form div div{
+    height: 2.55vw;
+    border-radius: 0.42vw;
+    border: 1px solid rgba(13, 69, 168, 0.25);
+    background: rgba(255, 255, 255, 0.01);
+    box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.12) inset;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1vw;
+    gap: 1vw;
+}
+form div svg{
+    width: 0.677vw;
+    aspect-ratio: 1/1;
+    cursor: pointer;
+}
+form div div:has(textarea){
+    height: 4.27vw;
+}
+form input{
+    border: none;
+    flex: 1;
+    background: transparent;
+}
+form textarea{
+    resize: none;
+    flex: 1;
+    background: transparent;
+    outline: none;
+    border: none;
+}
+form .form-buttons{
+    display: flex;
+    gap: 0.3125vw;
+    font-size: 0.73vw;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.cancel{
+    flex: 1;
+    width: 6.77vw;
+    aspect-ratio: 130/49;
+    border-radius: 0.42vw;
+    background: linear-gradient(0deg, rgba(168, 13, 13, 0.12) 0%, rgba(168, 13, 13, 0.12) 100%), rgba(0, 0, 0, 0.02);
+    box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.06) inset;
+    color: #F47171;
+}
+.charge{
+    width: 13.75vw;
+    aspect-ratio: 264/49;
+    background: url(images/charge-bg.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: rgba(13, 69, 168, 0.45);
+}
