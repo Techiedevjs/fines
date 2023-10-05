@@ -138,6 +138,21 @@ body{
     position: relative;
 }
 /* HOME PAGE */
+.close-fines{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 2vw;
+    aspect-ratio: 1/1;
+    z-index: 5;
+    border-radius: 1.3vw;
+    border: 2px solid rgba(255, 255, 255, 0.32);
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.20) inset, 0px 0px 65px 0px rgba(0, 0, 0, 0.35);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .container{
     width: 64.5vw;
     aspect-ratio: 1239/767;
@@ -302,7 +317,6 @@ form textarea{
 form .form-buttons{
     display: flex;
     gap: 0.3125vw;
-    font-size: 0.73vw;
     font-weight: 600;
     display: flex;
     justify-content: center;
@@ -313,15 +327,86 @@ form .form-buttons{
     width: 6.77vw;
     aspect-ratio: 130/49;
     border-radius: 0.42vw;
+    font-size: 0.73vw;
     background: linear-gradient(0deg, rgba(168, 13, 13, 0.12) 0%, rgba(168, 13, 13, 0.12) 100%), rgba(0, 0, 0, 0.02);
     box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.06) inset;
     color: #F47171;
+    cursor: pointer;
 }
 .charge{
     width: 13.75vw;
+    font-size: 0.73vw;
     aspect-ratio: 264/49;
     background: url(images/charge-bg.png);
     background-size: cover;
     background-repeat: no-repeat;
     color: rgba(13, 69, 168, 0.45);
+    cursor: pointer;
+}
+.invoices-search-filter{
+    display: flex;
+    gap: 0.73vw;
+    margin-top: 0.625vw;
+}
+.fines-search{
+    border-radius: 0.3125vw;
+    border: 1px solid rgba(34, 112, 249, 0.15);
+    background: rgba(34, 112, 249, 0.05);
+    box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.12) inset;
+    padding: 0 0.3125vw;
+}
+.search-icon{
+    border-radius: 0.2vw;
+background: rgba(34, 112, 249, 0.75);
+box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.12) inset;
+width: 1vw;
+height: 1vw;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+.search-icon svg{
+
+}
+.fines-search input{
+    background: transparent;
+    flex: 1;
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 0.625vw;
+}
+.fines-filter{
+    gap: 0.2vw;
+}
+.fines-filter div{
+    padding: 0.5vw var(--fontsmall);
+    font-weight: 600;
+    font-size: 0.625vw;
+    border-radius: 0.3125vw;
+    position: relative;
+    cursor: pointer;
+}
+.paid-fines{
+    background: rgba(45, 191, 42, 0.15);
+    box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.05) inset;
+    color: rgba(45, 191, 42, 0.45);
+}
+.unpaid-fines{
+    background: rgba(205, 13, 13, 0.08);
+    box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.05) inset;
+    color: rgba(205, 13, 13, 0.35);
+}
+.all-fines{
+    border: 1px solid rgba(142, 182, 252, 0.65);
+    background: rgba(34, 112, 249, 0.75);
+    box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.12) inset;
+    color: white;
+}
+.dot{
+    display: block;
+    width: 0.3125vw;
+    aspect-ratio: 1/1;
+    border-radius: 0.3125vw;
+    background: #2270F9;
 }
