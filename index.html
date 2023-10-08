@@ -23,17 +23,19 @@
                         <img src="images/bottom-left-edge.svg" alt="" class="left-edge">
                         <img src="images/circle-top.svg" alt="" class="top-left-edge">
                         <img src="images/circle-top.svg" alt="" class="top-right-edge">
-                        <header class="flexsmall">
-                            <img src="images/paper-fill.svg" alt="">
-                            <div>
-                                <p class="text-dark mediumbold">List of issued invoices</p>
-                                <p class="text-blue semi-bold semibold">All checks you have written are listed below</p>
+                        <header>
+                            <div class="flexsmall">
+                                <img src="images/paper-fill.svg" alt="">
+                                <div>
+                                    <p class="text-dark mediumbold">List of issued invoices</p>
+                                    <p class="text-blue semi-bold semibold">All checks you have written are listed below</p>
+                                </div>
                             </div>
                         </header>
                         <section class="invoices-list">
                             <div class="invoices-search-filter">
                                 <div class="fines-search flexsmall">
-                                    <input type="text" name="" id="">
+                                    <input type="text" name="search-fines" id="search-fines" placeholder="Search">
                                     <div class="search-icon">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 11 11" fill="none">
                                             <path d="M7.10422 6.41659H6.74213L6.6138 6.29284C6.90023 5.96008 7.10958 5.56812 7.22684 5.145C7.34411 4.72189 7.36641 4.27808 7.29213 3.84534C7.07672 2.57118 6.01338 1.55368 4.73005 1.39784C4.27887 1.34077 3.82062 1.38766 3.39035 1.53493C2.96009 1.6822 2.56921 1.92594 2.24764 2.24752C1.92607 2.56909 1.68232 2.95996 1.53505 3.39023C1.38778 3.8205 1.34089 4.27875 1.39797 4.72993C1.5538 6.01326 2.5713 7.07659 3.84547 7.29201C4.2782 7.36628 4.72201 7.34399 5.14512 7.22672C5.56824 7.10945 5.9602 6.90011 6.29297 6.61368L6.41672 6.74201V7.10409L8.36463 9.05201C8.55255 9.23993 8.85963 9.23993 9.04755 9.05201C9.23547 8.86409 9.23547 8.55701 9.04755 8.36909L7.10422 6.41659ZM4.35422 6.41659C3.21297 6.41659 2.29172 5.49534 2.29172 4.35409C2.29172 3.21284 3.21297 2.29159 4.35422 2.29159C5.49547 2.29159 6.41672 3.21284 6.41672 4.35409C6.41672 5.49534 5.49547 6.41659 4.35422 6.41659Z" fill="white"/>
@@ -46,21 +48,7 @@
                                     <div class="all-fines">All</div>
                                 </div>
                             </div>
-                            <section class="fines">
-                                <div class="fine">
-                                    <div class="fine-cont">
-                                        <section class="amount-intruder">
-                                            <p class="fine-amount">500$</p>
-                                            <span class="dot"></span>
-                                            <p class="intruder"> john oils</p>
-                                        </section>
-                                        <section class="date-cont">
-                                            <div class="days-left">5d left</div>
-                                            <div class="from-date">from 19/09/2023</div>
-                                        </section>
-                                    </div>
-                                </div>
-                            </section>
+                            <section class="fines"></section>
                         </section>
                     </div>
                 </div>
@@ -74,14 +62,16 @@
                         <img src="images/circle-top.svg" alt="" class="top-right-edge">
                         <img src="images/pin.svg" alt="" class="pin-top">
                         <img src="images/tape.svg" alt="" class="tape-bottom">
-                        <header class="flexsmall">
-                            <img src="images/paper-edit.svg" alt="">
-                            <div>
-                                <p class="text-dark mediumbold">Company Name</p>
-                                <p class="text-blue semi-bold semibold">Billing Form</p>
+                        <header>
+                            <div class="flexsmall">
+                                <img src="images/paper-edit.svg" alt="" class="bill-header-icon">
+                                <div>
+                                    <p class="text-dark mediumbold bill-header">Company Name</p>
+                                    <p class="text-blue semibold bill-sub-header">Billing Form</p>
+                                </div>
                             </div>
                         </header>
-                        <form class="">
+                        <form class="bill-form">
                             <div>
                                 <label for="">Pick an intruder</label>
                                 <div>
@@ -117,6 +107,39 @@
                                 <button class="charge">CHARGE A FINE</button>
                             </div>
                         </form>
+                        <section class="fine-details hidetask">
+                            <article>
+                                <div>
+                                    <h4>Intruder</h4> <span></span>
+                                </div>
+                                <p class="bill-intruder">John oils</p>
+                            </article>
+                            <article>
+                                <div>
+                                    <h4>Fine Amount</h4> <span></span>
+                                </div>
+                                <p class="bill-fine-amount">500 $</p>
+                            </article>
+                            <article>
+                                <div>
+                                    <h4>Due Date</h4> <span></span> <h4>From Date</h4>
+                                </div>
+                                <section>
+                                    <p class="bill-due-date">14/05/2022</p>
+                                    <p class="bill-from-date">12/03/2019</p>
+                                </section>
+                            </article>
+                            <article>
+                                <div>
+                                    <h4>Description</h4> <span></span>
+                                </div>
+                                <p class="bill-description">Lorem ipsum dolor sit amet consectetur. Eu interdum aliquet eu nunc quam. Et nunc nec felis enim vivamus libero pellentesque.</p>
+                            </article>
+                            <div class="fine-details-btns">
+                                <button class="back" onclick="backToBillingForm()">BACK</button>
+                                <button class="delete">DELETE</button>
+                            </div>
+                        </section>
                     </div>
                 </div>
             </section>
