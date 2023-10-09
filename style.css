@@ -1,13 +1,18 @@
 ::-webkit-scrollbar {
     width: 0.15625vw;
+    background: rgba(34, 112, 249, 0.25);
 }
 ::-webkit-scrollbar-track {
     box-shadow: inset 0 0 5px grey;
     border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb {
-    background: #FFFFFF;
+    background: #2270F9;
     border-radius: 5px;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
 }
 :root{
     --fontxsmall: 0.73vw;
@@ -87,7 +92,6 @@ input{
 .hide-element{
     opacity: 0;
     position: absolute !important;
-    z-index: -10;
     pointer-events: none;
     transform: translateY(30vw);
 }
@@ -107,7 +111,6 @@ input{
     opacity: 0;
     pointer-events: none;
     position: absolute;
-    z-index: -10;
     transform: translateY(-10vh);
 }
 .hideprofile{
@@ -274,6 +277,17 @@ header{
     padding-bottom: 1.3vw;
     border-bottom: 1px solid rgba(60, 60, 0, 0.15);
     margin:0 1.25vw 0 1.25vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header-unpaid{
+    border-radius: 0.42vw;
+background: #F16464;
+color: white;
+font-weight: 600;
+font-size: var(--fontxsmall);
+padding: var(--fontxsmall);
 }
 .text-dark{
     color: #3C3C00;
@@ -320,17 +334,28 @@ form div svg{
 form div div:has(textarea){
     height: 4.27vw;
 }
-form input{
+form input, form textarea{
     border: none;
     flex: 1;
     background: transparent;
-}
-form textarea{
-    resize: none;
-    flex: 1;
-    background: transparent;
+    font-size: 0.9375vw;
     outline: none;
-    border: none;
+    background: transparent;
+    resize: none;
+}
+form div:has(textarea){
+    position: relative;
+}
+.maxlength{
+    font-size: 0.625vw;
+    position: absolute;
+    bottom: var(--fontxsmall);
+    right: var(--fontxsmall);
+    color: rgba(34, 112, 249, 0.50);
+    letter-spacing: 0.6px;
+}
+.wordcount{
+    color: #2270F9;
 }
 form .form-buttons{
     display: flex;
@@ -351,6 +376,10 @@ form .form-buttons{
     color: #F47171;
     cursor: pointer;
 }
+.cancel:hover, .delete:hover{
+    background: rgba(188, 37, 37, 0.95);
+    color: #FFDADA;
+}
 .charge{
     width: 13.75vw;
     font-size: 0.73vw;
@@ -360,6 +389,10 @@ form .form-buttons{
     background-repeat: no-repeat;
     color: rgba(13, 69, 168, 0.45);
     cursor: pointer;
+}
+.charge:hover{
+    background: rgba(40, 118, 255, 0.15);
+    border-radius: 0.42vw;
 }
 .invoices-search-filter{
     display: flex;
@@ -406,6 +439,18 @@ align-items: center;
 }
 .fines-filter{
     gap: 0.2vw;
+    position: relative;
+}
+.fines-filter span {
+    display: block;
+    border-radius: 6px 6px 0 0;
+    box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.25);
+    width: 1.45vw;
+    height: 2px;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
 }
 .fines-filter div{
     padding: 0.5vw var(--fontsmall);
@@ -414,22 +459,44 @@ align-items: center;
     border-radius: 0.3125vw;
     position: relative;
     cursor: pointer;
+    box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.05) inset;
+}
+.paid-fines-active, .unpaid-fines-active, .all-fines-active{
+    box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.12) inset;
+    color: white !important;
 }
 .paid-fines{
     background: rgba(45, 191, 42, 0.15);
-    box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.05) inset;
     color: rgba(45, 191, 42, 0.45);
+}
+.paid-fines-active{
+    border: 1px solid rgba(167, 249, 166, 0.65);
+    background: rgba(45, 191, 42, 0.75);
+}
+.paid-fines-active span{
+    background: rgba(167, 249, 166, 0.65);
 }
 .unpaid-fines{
     background: rgba(205, 13, 13, 0.08);
-    box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.05) inset;
     color: rgba(205, 13, 13, 0.35);
 }
+.unpaid-fines-active{
+    border: 1px solid rgba(244, 113, 113, 0.65);
+    background: rgba(205, 13, 13, 0.75);
+}
+.unpaid-fines-active span{
+    background: rgba(244, 113, 113, 0.65);
+}
 .all-fines{
+    background: rgba(34, 112, 249, 0.15);
+    color: rgba(34, 112, 249, 0.45);
+}
+.all-fines-active{
     border: 1px solid rgba(142, 182, 252, 0.65);
     background: rgba(34, 112, 249, 0.75);
-    box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.12) inset;
-    color: white;
+}
+.all-fines-active span{
+    background: rgba(142, 182, 252, 0.65);
 }
 .fine{
     padding: 0.3125vw;
@@ -459,8 +526,20 @@ align-items: center;
 .fine-cont:has(.paid){
     background: url(images/paid-bg.png);
 }
+.fine:hover .fine-cont:has(.paid){
+    background: url(images/paid-hover-bg.png);
+}
+.fine:hover .fine-cont:has(.paid) .paid{
+    background: rgba(45, 191, 42, 1);
+}
 .fine-cont:has(.unpaid){
     background: url(images/unpaid-bg.png);
+}
+.fine:hover .fine-cont:has(.unpaid){
+    background: url(images/unpaid-hover-bg.png);
+}
+.fine:hover .fine-cont:has(.unpaid) .unpaid, .fine:hover .fine-cont:has(.unpaid) .days-left{
+    background: #F16464;
 }
 .dot{
     display: block;
@@ -542,16 +621,23 @@ align-items: center;
     font-size: var(--fontxsmall);
     border-radius: 0.42vw;
     cursor: pointer;
+    height: 2.55vw;
 }
 .back{
-    width: 5.4vw;
-    padding: 1vw 0;
+    width: 5.41vw;
     color: rgba(40, 118, 255, 0.65);
     background: rgba(40, 118, 255, 0.15);
     box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.06) inset;
 }
+.back:hover{
+    background: url(images/backhoverbg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+    border-radius: 0;
+}
 .delete{
-    padding: 1vw 2vw;
+    width: 6.77vw;
     color: #F47171;
     background: linear-gradient(0deg, rgba(168, 13, 13, 0.12) 0%, rgba(168, 13, 13, 0.12) 100%), rgba(0, 0, 0, 0.02);
     box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.06) inset;
@@ -560,4 +646,89 @@ align-items: center;
     margin-top: 1vw;
     display: flex;
     justify-content: space-between;
+}
+.intruder-input{
+   position: relative;
+}
+.intruder-select{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 21.458vw;
+    aspect-ratio: 412/221;
+    background: url(images/intruders-box.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 0.5vw var(--fontsmall) 0 1vw;
+}
+.intruder-select::placeholder{
+    color:rgba(255, 255, 255, 0.65);
+}
+.intruders-list{
+    overflow-y: scroll;
+    height: 8.33vw;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2vw;
+    padding-right: 0.3125vw;
+}
+.intruders-list::-webkit-scrollbar-thumb {
+    background: white;
+    border-radius: 5px;
+}
+.intruders-list::-webkit-scrollbar {
+    width: 0.15625vw;
+    background: rgba(255, 255, 255, 0.15);
+}
+.intruders-list p{
+    border-radius: 0.42vw;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.05);
+    width: 100%;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: var(--fontxsmall);
+    font-weight: 500;
+    padding: 0.78vw;
+    text-transform: capitalize;
+    cursor: pointer;
+}
+.intruders-list p:hover{
+    border: 1px solid rgba(255, 255, 255, 0.20);
+    background: rgba(255, 255, 255, 0.12);
+}
+.search-intruder{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: transparent;
+    border: 0;
+    padding:0 0.2vw 0.625vw 0;
+    height: max-content !important;
+    box-shadow: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 0;
+    margin-right: 0.2vw;
+    margin-bottom: 0.5vw;
+}
+.search-intruder p svg{
+    width: 0.88vw;
+    aspect-ratio: 1/1;
+}
+.closedrop{
+    width: 0.677vw;
+}
+.search-intruder p{
+    flex: 1;
+    margin: 0;
+    padding: 0;
+}
+.search-intruder p input::placeholder{
+    color: rgba(255, 255, 255, 0.65);
+    font-size: var(--fontxsmall);
+    font-weight: 500;
+}
+.search-intruder input{
+    line-height: 100%;
+    font-size: var(--fontxsmall);
+    color: rgba(255, 255, 255, 0.65);
 }
