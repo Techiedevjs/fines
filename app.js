@@ -76,6 +76,69 @@ let fines = [
         officerName: 'mills mayer',
         description: "lorem ipsum nicnn ond"
     },
+    {
+        id: 709,
+        intruder: 'john oils',
+        fromDate: "21/09/2021",
+        dueDate: "21/09/2022",
+        paid: true,
+        daysLeft: 2,
+        fineAmount: 500,
+        officerName: 'mills mayer',
+        description: "lorem ipsum nicnn ond"
+    },
+    {
+        id: 721,
+        intruder: 'john oils',
+        fromDate: "21/09/2021",
+        dueDate: "21/09/2022",
+        paid: false,
+        daysLeft: 2,
+        fineAmount: 500,
+        officerName: 'mills mayer',
+        description: "lorem ipsum nicnn ond"
+    },
+    {
+        id: 127,
+        intruder: 'john oils',
+        fromDate: "21/09/2021",
+        dueDate: "21/09/2022",
+        paid: true,
+        daysLeft: 2,
+        fineAmount: 500,
+        officerName: 'mills mayer',
+        description: "lorem ipsum nicnn ond"
+    },
+]
+let intruders = [
+    {
+        id: 142,
+        name: "john oils"
+    },
+    {
+        id: 143,
+        name: "Adam jones"
+    },
+    {
+        id: 144,
+        name: "tyler perry"
+    },
+    {
+        id: 145,
+        name: "reece james"
+    },
+    {
+        id: 146,
+        name: "x men"
+    },
+    {
+        id: 147,
+        name: "soft hazard"
+    },{
+        id: 148,
+        name: "dolly polly"
+    },
+
 ]
 const pushFines = (data) => {
     document.querySelector('.fines').innerHTML = "";
@@ -104,17 +167,27 @@ document.querySelector('#search-fines').addEventListener('input', (e) => {
     let searchresults = fines.filter((fine) => fine.intruder.toLowerCase().includes(searchvalue))
     pushFines(searchresults)
 })
-document.querySelector('.paid-fines').addEventListener('click', () => {
-    let filtered = fines.filter((fine) => fine.paid === true);
-    pushFines(filtered)
-})
-document.querySelector('.unpaid-fines').addEventListener('click', () => {
-    let filtered = fines.filter((fine) => fine.paid !== true)
-    pushFines(filtered)
-})
-document.querySelector('.all-fines').addEventListener('click', () => {
-    pushFines(fines)
-})
+let currentfilter = 'all';
+const pushFilterResult = (data, filter) => {
+    currentfilter = filter
+    if(filter === 'all'){
+        pushFines(fines);
+    } else {
+        let filtered = data.filter((fine) => fine.paid === filter);
+        pushFines(filtered)
+    }
+}
+const filterResult = (elem, status) => {
+    let clicked  = document.getElementsByClassName(elem)[0]
+    pushFilterResult(fines, status)
+    clicked.classList.add(`${elem}-active`);
+    let siblings = Array.from(clicked.parentElement.children);
+    siblings.map((sib) => {
+        if(sib !== clicked){
+            sib.classList.remove(sib.classList[1])
+        }
+    })
+}
 const viewBillingDetails = (id) => {
     document.querySelector('.bill-form').classList.add('hidetask');
     document.querySelector('.fine-details').classList.remove('hidetask');
@@ -129,6 +202,13 @@ const viewBillingDetails = (id) => {
     document.querySelector('.bill-sub-header').innerHTML = 'Billing from ' + `<span class='cap semibold'>${officerName}</span>`;
     document.querySelector('.bill-sub-header').classList.add('mediumbold');
     document.querySelector('.bill-header-icon').src = 'images/bill.svg';
+    document.querySelector('.header-unpaid').classList.remove('hidetask')
+    document.querySelector('.delete').addEventListener('click', () => {
+        document.getElementById(id).classList.add('hideprofile')
+        fines = fines.filter((fine) => fine.id !== id)
+        pushFilterResult(fines, currentfilter);
+        backToBillingForm();
+    })
 }
 const backToBillingForm = () => {
     document.querySelector('.bill-form').classList.remove('hidetask');
@@ -137,7 +217,34 @@ const backToBillingForm = () => {
     document.querySelector('.bill-sub-header').innerHTML = 'Billing Form';
     document.querySelector('.bill-sub-header').classList.remove('mediumbold');
     document.querySelector('.bill-header-icon').src = "images/paper-edit.svg";
+    document.querySelector('.header-unpaid').classList.add('hidetask')
 }
+const pushIntruders = (data) => {
+    document.querySelector('.intruders-list').innerHTML = "";
+    data.map((intru) => {
+        const {id, name} = intru;
+        document.querySelector('.intruders-list').innerHTML += `
+            <p><span>${id} </span>|<span> ${name}</span></p>
+        `
+    })
+}
+pushIntruders(intruders)
+document.querySelector('#intruder').addEventListener('click', () => {
+    document.querySelector('.intruder-select').classList.remove('hidetask')
+    document.querySelector('#intruder-input').focus()
+})
+document.querySelector('#intruder-input').addEventListener('input', (e) => {
+    let val = e.target.value;
+    let filteredIntruders = intruders.filter((intruder) => intruder.name.toLowerCase().includes(val.toLowerCase()))
+    pushIntruders(filteredIntruders)
+})
+const toggleIntruderDropDown = () => {
+    document.querySelector('.intruder-select').classList.toggle('hidetask')
+}
+document.querySelector('#description').addEventListener('input', (e) => {
+    let val = e.target.value;
+    document.querySelector('.wordcount').innerHTML = val.length
+})
 document.querySelector('.close-fines').addEventListener('click', () => {
     document.querySelector('.display').classList.add('hide-display');
 })
