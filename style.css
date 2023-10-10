@@ -1,3 +1,7 @@
+@font-face {
+    font-family: 'SF Pro Text';
+    src: url(./SFProText.ttf);
+}
 ::-webkit-scrollbar {
     width: 0.15625vw;
     background: rgba(34, 112, 249, 0.25);
@@ -283,7 +287,6 @@ header{
 }
 .header-unpaid{
     border-radius: 0.42vw;
-background: #F16464;
 color: white;
 font-weight: 600;
 font-size: var(--fontxsmall);
@@ -650,18 +653,20 @@ align-items: center;
 .intruder-input{
    position: relative;
 }
-.intruder-select{
+.popup{
     position: absolute;
     top: 0;
-    left: 0;
+    left: 50%;
+    transform: translateX(-50%);
     width: 21.458vw;
     aspect-ratio: 412/221;
     background: url(images/intruders-box.png);
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
     padding: 0.5vw var(--fontsmall) 0 1vw;
+    z-index: 5;
 }
-.intruder-select::placeholder{
+.popup::placeholder{
     color:rgba(255, 255, 255, 0.65);
 }
 .intruders-list{
@@ -696,7 +701,7 @@ align-items: center;
     border: 1px solid rgba(255, 255, 255, 0.20);
     background: rgba(255, 255, 255, 0.12);
 }
-.search-intruder{
+.popup-search{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -710,25 +715,114 @@ align-items: center;
     margin-right: 0.2vw;
     margin-bottom: 0.5vw;
 }
-.search-intruder p svg{
+.popup-search p svg{
     width: 0.88vw;
     aspect-ratio: 1/1;
 }
 .closedrop{
     width: 0.677vw;
 }
-.search-intruder p{
+.popup-search p{
     flex: 1;
     margin: 0;
     padding: 0;
+    color: rgba(255, 255, 255, 0.65);
 }
-.search-intruder p input::placeholder{
+.popup-search p input::placeholder{
     color: rgba(255, 255, 255, 0.65);
     font-size: var(--fontxsmall);
     font-weight: 500;
 }
-.search-intruder input{
+.popup-search input{
     line-height: 100%;
     font-size: var(--fontxsmall);
     color: rgba(255, 255, 255, 0.65);
+}
+.due-date-select{
+    background: url(images/due-date-bg.png);
+    aspect-ratio: 412/241;
+}
+.relative{
+    position: relative;
+}
+.fine-active{
+    border: 1px solid rgba(34, 112, 249, 0.45);
+    background: rgba(34, 112, 249, 0.25);
+}
+.fine-active .fine-cont{
+    background: url(images/fine-active-bg.png);
+}
+.fine-active p{
+    color: white;
+}
+.fine-active span{
+    background: white;
+}
+.dates-months{
+    display: flex;
+    justify-content: space-between;
+}
+.dates{
+    width: 11.04vw;
+}
+.months{
+    width: 6.458vw;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+.months button{
+    border-radius: 0.42vw;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.05);
+    width: 100%;
+    padding: var(--fontxsmall) 0;
+    color: rgba(255, 255, 255, 0.95);
+    font-size: var(--fontxsmall);
+    cursor: pointer;
+}
+.months button:hover{
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.15);
+}
+.months svg{
+    width: 1.35vw;
+    aspect-ratio: 1/1;
+}
+.months svg:hover rect{
+    stroke-opacity: 0.35;
+    fill-opacity: 0.15;
+}
+.month{
+    flex: 1;
+    color: #FFF;
+    text-align: center;
+    font-family: 'SF Pro Text';
+    font-size: 0.625vw;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+.days{
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.26vw;
+}
+.day{
+    color: rgba(255, 255, 255, 0.85);
+    text-align: center;
+    font-family: 'SF Pro Text';
+    font-size: 0.52vw;
+    font-weight: 600;
+    width: 1.354vw;
+    aspect-ratio: 1/1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url(images/day-bg.svg);
+    background-repeat: none !important;
+    background-size: cover !important;
+    cursor: pointer;
+}
+.day:hover{
+    background: url(images/day-bg-hover.svg);
 }
