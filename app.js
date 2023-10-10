@@ -145,8 +145,8 @@ const pushFines = (data) => {
     data.map((fine) => {
         const {intruder, id, fromDate, dueDate, paid, fineAmount, description, daysLeft} = fine;
         document.querySelector('.fines').innerHTML += `
-            <div class="fine" id=${id}>
-                <div class="fine-cont" onclick="viewBillingDetails(${id})">
+            <div class="fine" id=${id} onclick="viewBillingDetails(${id})">
+                <div class="fine-cont">
                     <section class="amount-intruder">
                         <p class="fine-amount">${fineAmount}$</p>
                         <span class="dot"></span>
@@ -189,6 +189,14 @@ const filterResult = (elem, status) => {
     })
 }
 const viewBillingDetails = (id) => {
+    let current = document.getElementById(id);
+    current.classList.add('fine-active')
+    let siblings = Array.from(current.parentElement.children);
+    siblings.map((sib) => {
+        if(sib !== current){
+            sib.classList.remove('fine-active')
+        }
+    })
     document.querySelector('.bill-form').classList.add('hidetask');
     document.querySelector('.fine-details').classList.remove('hidetask');
     let fine = fines.filter((f)=> f.id === id)
@@ -203,6 +211,9 @@ const viewBillingDetails = (id) => {
     document.querySelector('.bill-sub-header').classList.add('mediumbold');
     document.querySelector('.bill-header-icon').src = 'images/bill.svg';
     document.querySelector('.header-unpaid').classList.remove('hidetask')
+    paid ? document.querySelector('.header-unpaid').style.background = 'rgba(118, 199, 116, 1)' : document.querySelector('.header-unpaid').style.background = '#F16464';
+    paid ? document.querySelector('.header-unpaid').innerHTML = 'Paid' : document.querySelector('.header-unpaid').innerHTML = 'Unpaid'
+
     document.querySelector('.delete').addEventListener('click', () => {
         document.getElementById(id).classList.add('hideprofile')
         fines = fines.filter((fine) => fine.id !== id)
@@ -245,6 +256,20 @@ document.querySelector('#description').addEventListener('input', (e) => {
     let val = e.target.value;
     document.querySelector('.wordcount').innerHTML = val.length
 })
+
+const pushDates = (NoOfDays) => {
+    document.querySelector('.days').innerHTML = ""
+    let dateList = [];
+    for (var i = 1; i <= NoOfDays; i++) {
+        dateList.push(i);
+    }
+    dateList.map((day) => {
+        document.querySelector('.days').innerHTML +=  `
+            <p class='day' id='${day}'>${day}</p>
+        `
+    })
+}
+pushDates(31)
 document.querySelector('.close-fines').addEventListener('click', () => {
     document.querySelector('.display').classList.add('hide-display');
 })
