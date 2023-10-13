@@ -113,11 +113,11 @@
                             <div>
                                 <label for="">Select a due date</label>
                                 <div class="relative">
-                                    <input type="text" name="" id="due-date">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 13 13" fill="none">
+                                    <input type="text" name="" id="due-date" onclick="toggleDueDateDropDown()">
+                                    <svg xmlns="http://www.w3.org/2000/svg" onclick="toggleDueDateDropDown()" width="13" height="13" viewBox="0 0 13 13" fill="none">
                                         <path d="M11.375 2.70834L1.62502 2.70834C1.5263 2.70865 1.42954 2.73587 1.34515 2.78708C1.26076 2.8383 1.19193 2.91155 1.14608 2.99897C1.10022 3.08639 1.07908 3.18466 1.08492 3.2832C1.09076 3.38174 1.12336 3.47682 1.17922 3.55821L6.05422 10.5999C6.25626 10.8918 6.74268 10.8918 6.94526 10.5999L11.8203 3.55821C11.8767 3.47699 11.9098 3.38186 11.9159 3.28316C11.9221 3.18445 11.9011 3.08595 11.8552 2.99834C11.8093 2.91074 11.7403 2.83739 11.6556 2.78626C11.571 2.73513 11.4739 2.70818 11.375 2.70834Z" fill="#0D45A8"/>
                                     </svg>
-                                    <section class="popup due-date-select">
+                                    <section class="popup due-date-select hidetask">
                                         <div class=" popup-search">
                                             <article class="flexlittle">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -126,7 +126,7 @@
                                                 </svg>
                                                 <p class="fxs">Deadline for payment: <span></span></p>
                                             </article>
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="closedrop"  width="13" height="13" viewBox="0 0 13 13" fill="none">
+                                            <svg xmlns="http://www.w3.org/2000/svg" onclick="toggleDueDateDropDown()" class="closedrop"  width="13" height="13" viewBox="0 0 13 13" fill="none">
                                                 <path d="M11.375 10.2917L1.62502 10.2917C1.5263 10.2914 1.42954 10.2641 1.34515 10.2129C1.26076 10.1617 1.19193 10.0884 1.14608 10.001C1.10022 9.91361 1.07908 9.81534 1.08492 9.7168C1.09076 9.61826 1.12336 9.52318 1.17922 9.44179L6.05422 2.40012C6.25626 2.10816 6.74268 2.10816 6.94526 2.40012L11.8203 9.44179C11.8767 9.52301 11.9098 9.61814 11.9159 9.71684C11.9221 9.81555 11.9011 9.91405 11.8552 10.0017C11.8093 10.0893 11.7403 10.1626 11.6556 10.2137C11.571 10.2649 11.4739 10.2918 11.375 10.2917Z" fill="white" fill-opacity="0.65"/>
                                             </svg>
                                         </div>
@@ -164,8 +164,8 @@
                                 <p class="maxlength"><span class="wordcount">0</span>/250</p>
                             </div>
                             <div class="form-buttons">
-                                <button class="cancel">CANCEL</button>
-                                <button class="charge">CHARGE A FINE</button>
+                                <button class="cancel" onclick="cancelBillForm(event)">CANCEL</button>
+                                <button class="charge" onclick="chargeFine(event)">CHARGE A FINE</button>
                             </div>
                         </form>
                         <section class="fine-details hidetask">
