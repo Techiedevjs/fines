@@ -103,7 +103,7 @@ input{
     opacity: 0;
     position: absolute;
     pointer-events: none;
-    transform: translateY(20vh);
+    /* transform: translateY(20vh); */
 }
 .hide{
     opacity: 0;
@@ -150,6 +150,7 @@ body{
     justify-content: center;
     align-items: center;
     position: relative;
+    background: url(images/glowtopright.png) top left no-repeat, url(images/glowbottomright.png) bottom right no-repeat, rgba(0, 0, 0, 0.65);
 }
 /* HOME PAGE */
 .close-fines{
@@ -287,10 +288,14 @@ header{
 }
 .header-unpaid{
     border-radius: 0.42vw;
-color: white;
-font-weight: 600;
-font-size: var(--fontxsmall);
-padding: var(--fontxsmall);
+    width: 3.4375vw;
+    aspect-ratio: 66/33;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: 600;
+    font-size: var(--fontxsmall);
 }
 .text-dark{
     color: #3C3C00;
@@ -341,10 +346,13 @@ form input, form textarea{
     border: none;
     flex: 1;
     background: transparent;
-    font-size: 0.9375vw;
+    font-size: var(--fontxsmall);
     outline: none;
     background: transparent;
     resize: none;
+    color: #2270F9;
+    font-weight: 500;
+    text-transform: capitalize;
 }
 form div:has(textarea){
     position: relative;
