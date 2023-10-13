@@ -201,6 +201,11 @@ const viewBillingDetails = (id) => {
     document.querySelector('.fine-details').classList.remove('hidetask');
     let fine = fines.filter((f)=> f.id === id)
     const {daysLeft, paid, dueDate, fromDate, description, intruder, fineAmount,officerName } = fine[0];
+    if(paid){
+        document.querySelector('.delete').classList.add('hidetask')
+    } else {
+        document.querySelector('.delete').classList.remove('hidetask')
+    }
     document.querySelector('.bill-intruder').innerHTML = intruder;
     document.querySelector('.bill-fine-amount').innerHTML = fineAmount + ' $';
     document.querySelector('.bill-due-date').innerHTML = dueDate;
@@ -228,21 +233,35 @@ const backToBillingForm = () => {
     document.querySelector('.bill-sub-header').innerHTML = 'Billing Form';
     document.querySelector('.bill-sub-header').classList.remove('mediumbold');
     document.querySelector('.bill-header-icon').src = "images/paper-edit.svg";
-    document.querySelector('.header-unpaid').classList.add('hidetask')
+    document.querySelector('.header-unpaid').classList.add('hidetask');
 }
 const pushIntruders = (data) => {
     document.querySelector('.intruders-list').innerHTML = "";
     data.map((intru) => {
         const {id, name} = intru;
         document.querySelector('.intruders-list').innerHTML += `
-            <p><span>${id} </span>|<span> ${name}</span></p>
+            <p onclick="selectIntruder(${id})"><span>${id} </span>|<span> ${name}</span></p>
         `
     })
 }
 pushIntruders(intruders)
+let newFine = {
+    intruderID: "",
+    fineAmount: 0,
+    dueDate: 0,
+    daysLeft: 0,
+    description: ""
+}
+const selectIntruder = (id) => {
+    let selected = intruders.filter(intr => intr.id === id);
+    document.querySelector('#intruder').value = selected[0].name
+    document.querySelector('.intruder-select').classList.add('hidetask')
+    newFine.intruderID = selected[0].id
+}
 document.querySelector('#intruder').addEventListener('click', () => {
     document.querySelector('.intruder-select').classList.remove('hidetask')
     document.querySelector('#intruder-input').focus()
+    document.querySelector('#intruder-input').value = ''
 })
 document.querySelector('#intruder-input').addEventListener('input', (e) => {
     let val = e.target.value;
@@ -250,13 +269,23 @@ document.querySelector('#intruder-input').addEventListener('input', (e) => {
     pushIntruders(filteredIntruders)
 })
 const toggleIntruderDropDown = () => {
+    document.querySelector('#intruder-input').value = ''
     document.querySelector('.intruder-select').classList.toggle('hidetask')
+}
+const toggleDueDateDropDown = () => {
+    document.querySelector('.due-date-select').classList.toggle('hidetask')
 }
 document.querySelector('#description').addEventListener('input', (e) => {
     let val = e.target.value;
     document.querySelector('.wordcount').innerHTML = val.length
+    newFine.description = val
+    console.log(newFine);
 })
-
+document.querySelector('#fine-amount').addEventListener('input', (e) => {
+    e.preventDefault()
+    let val = e.target.value;
+    newFine.fineAmount = Number(val);
+})
 const pushDates = (NoOfDays) => {
     document.querySelector('.days').innerHTML = ""
     let dateList = [];
@@ -270,6 +299,20 @@ const pushDates = (NoOfDays) => {
     })
 }
 pushDates(31)
+const form = document.querySelector('.bill-form');
+form.addEventListener('keypress', function(e) {
+if (e.keyCode === 13) {
+    e.preventDefault();
+}
+});
+const cancelBillForm = (event) => {
+    event.preventDefault()
+    alert('cancelled')
+}
+const chargeFine = (event) => {
+    event.preventDefault();
+    alert('bill fined')
+}
 document.querySelector('.close-fines').addEventListener('click', () => {
     document.querySelector('.display').classList.add('hide-display');
 })
