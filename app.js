@@ -234,6 +234,9 @@ const backToBillingForm = () => {
     document.querySelector('.bill-sub-header').classList.remove('mediumbold');
     document.querySelector('.bill-header-icon').src = "images/paper-edit.svg";
     document.querySelector('.header-unpaid').classList.add('hidetask');
+    document.querySelectorAll('.fine').forEach(element => {
+        element.classList.remove('fine-active')
+    });
 }
 const pushIntruders = (data) => {
     document.querySelector('.intruders-list').innerHTML = "";
@@ -270,10 +273,12 @@ document.querySelector('#intruder-input').addEventListener('input', (e) => {
 })
 const toggleIntruderDropDown = () => {
     document.querySelector('#intruder-input').value = ''
-    document.querySelector('.intruder-select').classList.toggle('hidetask')
+    document.querySelector('.intruder-select').classList.toggle('hidetask');
+    document.querySelector('.due-date-select').classList.add('hidetask')
 }
 const toggleDueDateDropDown = () => {
     document.querySelector('.due-date-select').classList.toggle('hidetask')
+    document.querySelector('.intruder-select').classList.add('hidetask');
 }
 document.querySelector('#description').addEventListener('input', (e) => {
     let val = e.target.value;
@@ -286,6 +291,16 @@ document.querySelector('#fine-amount').addEventListener('input', (e) => {
     let val = e.target.value;
     newFine.fineAmount = Number(val);
 })
+const monthNames = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+]
+let today = new Date();
+let currentYear = today.getFullYear();
+let currentDay = today.getDay();
+let currentMonth = today.getMonth();
+let selectedMonth = currentMonth
+document.querySelector('.month').innerHTML = monthNames[selectedMonth];
 const pushDates = (NoOfDays) => {
     document.querySelector('.days').innerHTML = ""
     let dateList = [];
@@ -298,7 +313,47 @@ const pushDates = (NoOfDays) => {
         `
     })
 }
-pushDates(31)
+console.log(today)
+const datesToDisplay = (year, month) => {
+    let count = new Date(year, month+1, 0).getDate();
+    pushDates(count)
+    console.log(count)
+}
+datesToDisplay(currentYear, currentMonth)
+const previousMonth = () => {
+    selectedMonth--
+    if (currentYear === today.getFullYear() && currentMonth){
+
+    } else if (selectedMonth === -1){
+        selectedMonth = 11
+        currentYear--
+    }
+    document.querySelector('.month').innerHTML = monthNames[selectedMonth];
+    datesToDisplay(currentYear, selectedMonth)
+}
+const nextMonth = () => {
+    selectedMonth++
+    if(selectedMonth === 12){
+        selectedMonth = 0
+        currentYear++
+    }
+    document.querySelector('.month').innerHTML = monthNames[selectedMonth];
+    datesToDisplay(currentYear, selectedMonth)
+}
+// datesToDisplay(2002, 7);
+// datesToDisplay(2023,2)
+// DATES
+
+function changeFormat(date) {
+    let d = date.toJSON().slice(0, 10);
+    let nDate = d.slice(8, 10) + '/'
+        + d.slice(5, 7) + '/'
+        + d.slice(0, 4);
+    console.log(nDate);
+}
+ 
+changeFormat(today);
+ 
 const form = document.querySelector('.bill-form');
 form.addEventListener('keypress', function(e) {
 if (e.keyCode === 13) {
