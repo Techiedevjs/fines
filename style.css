@@ -769,6 +769,7 @@ align-items: center;
 .dates-months{
     display: flex;
     justify-content: space-between;
+    height: 7.76vw;
 }
 .dates{
     width: 11.04vw;
@@ -814,6 +815,7 @@ align-items: center;
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 0.26vw;
+    height: max-content;
 }
 .day{
     color: rgba(255, 255, 255, 0.85);
