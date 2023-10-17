@@ -315,6 +315,9 @@ form, .fine-details{
     justify-content: space-between;
     padding: 1vw 1.25vw 0 1.25vw;
 }
+form{
+    align-items: center;
+}
 form label{
     color: #2270F9;
     font-size: 0.9375vw;
@@ -322,27 +325,53 @@ form label{
     margin-bottom: 0.5vw;
     display: block;
 }
-form div div{
-    height: 2.55vw;
-    border-radius: 0.42vw;
-    border: 1px solid rgba(13, 69, 168, 0.25);
-    background: rgba(255, 255, 255, 0.01);
-    box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.12) inset;
+.input-cont, .textarea{
+    height: 2.5521vw;
+    aspect-ratio: 400/49;
+    background: url(images/input.svg);
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 0 1vw;
     gap: 1vw;
+    cursor: pointer;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+}
+.input-cont:hover{
+    background: url(images/inputemptyhover.svg);
+    border-radius: 0;
+    border: 0;
+}
+.textarea{
+    height: 4.27vw;
+    aspect-ratio: 400/82;
+    background: url(images/description.svg);
+}
+.textarea:hover{
+    background: url(images/descriptionhover.svg);
+}
+.inputfilled{
+    background: url(images/inputfilled.svg);
+}
+.inputfilled:hover{
+    background: url(images/inputfilledhover.svg);
+}
+.textareafilled{
+    background: url(images/descriptionfilled.svg) ;
+}
+.textareafilled:hover{
+    background: url(images/descriptionfilledhover.svg);
+}
+.input-cont{
+    cursor: pointer;
 }
 form div svg{
     width: 0.677vw;
     aspect-ratio: 1/1;
     cursor: pointer;
 }
-form div div:has(textarea){
-    height: 4.27vw;
-}
-form input, form textarea{
+form input, form textarea, form p{
     border: none;
     flex: 1;
     background: transparent;
@@ -400,10 +429,18 @@ form .form-buttons{
     background-repeat: no-repeat;
     color: rgba(13, 69, 168, 0.45);
     cursor: pointer;
+    pointer-events: none;
 }
-.charge:hover{
-    background: rgba(40, 118, 255, 0.15);
+.allowclick{
     border-radius: 0.42vw;
+    background: rgba(40, 118, 255, 0.95);
+    color: white;
+    font-weight: 600;
+    box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.06) inset;
+    pointer-events: all;
+}
+.allowclick:hover{
+    background: #508FFF;
 }
 .invoices-search-filter{
     display: flex;
@@ -423,16 +460,13 @@ form .form-buttons{
 }
 .search-icon{
     border-radius: 0.2vw;
-background: rgba(34, 112, 249, 0.75);
-box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.12) inset;
-width: 1vw;
-height: 1vw;
-display: flex;
-justify-content: center;
-align-items: center;
-}
-.search-icon svg{
-
+    background: rgba(34, 112, 249, 0.75);
+    box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.12) inset;
+    width: 1vw;
+    height: 1vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .fines-search input{
     background: transparent;
@@ -704,6 +738,7 @@ align-items: center;
     padding: 0.78vw;
     text-transform: capitalize;
     cursor: pointer;
+    flex: none;
 }
 .intruders-list p:hover{
     border: 1px solid rgba(255, 255, 255, 0.20);
@@ -756,6 +791,7 @@ align-items: center;
 .fine-active{
     border: 1px solid rgba(34, 112, 249, 0.45);
     background: rgba(34, 112, 249, 0.25);
+    pointer-events: none;
 }
 .fine-active .fine-cont{
     background: url(images/fine-active-bg.png);
@@ -833,6 +869,29 @@ align-items: center;
     background-size: cover !important;
     cursor: pointer;
 }
+.disable{
+    color: rgba(255, 255, 255, 0.45);
+    border-radius: 0.3125vw;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    background: rgba(255, 255, 255, 0.03);
+    pointer-events: none;
+}
 .day:hover{
     background: url(images/day-bg-hover.svg);
+}
+.disable:hover{
+    border-radius: 0.3125vw;
+border: 1px solid rgba(255, 255, 255, 0.06);
+background: rgba(255, 255, 255, 0.03);
+}
+.selected{
+    color: rgba(255, 255, 255, 0.95);
+    background: url(images/selected-date.svg);
+}
+.selected:hover{
+    color: white;
+    background: url(images/selected-date.svg);
+}
+.daysleft{
+    color: rgba(255, 255, 255, 0.95);
 }
